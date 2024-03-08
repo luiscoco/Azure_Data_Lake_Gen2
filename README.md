@@ -13,7 +13,7 @@ The following is a simple example of how you can use C# to interact with Azure D
 
 ## 2. (Optional) Upgrade and existing Azure StorageAccount to Azure Data Lake Gen2
 
-As previous requirement to upgrade your storageaccount, 
+As previous requirement to upgrade your storageaccount, you have to disable the options soft delete blobs and container
 
 ![image](https://github.com/luiscoco/Azure_Data_Lake_Gen2/assets/32194879/b24c84f4-3c41-4287-92a8-67df93cf5dc0)
 
