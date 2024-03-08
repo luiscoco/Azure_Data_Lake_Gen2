@@ -97,3 +97,57 @@ This C# sample provides a basic overview of interacting with Azure Data Lake Sto
 
 Depending on your specific requirements, you might need to explore more advanced features like setting permissions, using data lakes with data frames in analytics services, or managing file and directory properties.
 
+ Here's how you could structure an entire C# program that incorporates all the steps mentioned earlier, including setting up namespaces, authentication, creating a file system, uploading a file, and listing files in a directory. This example assumes you're using Azure Active Directory for authentication.
+
+Make sure to replace placeholders like <your-datalake-name> with your actual Data Lake Storage Gen2 account details and adjust the file paths according to your environment.
+
+csharp
+Copy code
+using Azure.Storage.Files.DataLake;
+using Azure.Identity;
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Setup Data Lake Service Client
+        var serviceUri = new Uri("https://<your-datalake-name>.dfs.core.windows.net");
+        var client = new DataLakeServiceClient(serviceUri, new DefaultAzureCredential());
+
+        // Create a file system
+        var fileSystemName = "my-file-system";
+        var fileSystemClient = client.GetFileSystemClient(fileSystemName);
+        fileSystemClient.CreateIfNotExists();
+        Console.WriteLine($"File system '{fileSystemName}' created or already exists.");
+
+        // Create a directory and upload a file
+        var directoryName = "my-directory";
+        var fileName = "sample.txt";
+        var filePath = "example.txt"; // Path to the file to upload
+
+        var directoryClient = fileSystemClient.GetDirectoryClient(directoryName);
+        directoryClient.CreateIfNotExists();
+        
+        var fileClient = directoryClient.GetFileClient(fileName);
+        using var fileStream = System.IO.File.OpenRead(filePath);
+        fileClient.Upload(fileStream, overwrite: true);
+        Console.WriteLine($"File '{fileName}' uploaded in directory '{directoryName}'.");
+
+        // List files in the directory
+        Console.WriteLine($"Listing files in directory '{directoryName}':");
+        var paths = directoryClient.GetPaths(recursive: false);
+        foreach (var path in paths)
+        {
+            Console.WriteLine(path.Name);
+        }
+    }
+}
+Before running this code, ensure:
+
+You have installed the Azure.Storage.Files.DataLake package in your project.
+You replace <your-datalake-name> with your Data Lake Storage Gen2 account name.
+The file example.txt exists in your project's output directory, or adjust the filePath variable accordingly.
+Your Azure Active Directory setup for authentication is correctly configured, and the running account has the necessary permissions to perform these operations.
+This simple example is designed to get you started. Depending on your application's needs, you might want to handle exceptions, configure additional settings, or explore more functionalities provided by the Azure SDK for .NET.
+
