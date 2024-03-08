@@ -13,6 +13,11 @@ The following is a simple example of how you can use C# to interact with Azure D
 
 ## 2. (Optional) Upgrade and existing Azure StorageAccount to Azure Data Lake Gen2
 
+As previous requirement to upgrade your storageaccount, 
+
+![image](https://github.com/luiscoco/Azure_Data_Lake_Gen2/assets/32194879/b24c84f4-3c41-4287-92a8-67df93cf5dc0)
+
+
 If you would like to **upgrade an existing Azure Storage Account** to become Azure Data Lake Storage Gen 2 select the following option
 
 ![image](https://github.com/luiscoco/Azure_Services_review/assets/32194879/12443c6b-9ff2-4e6a-a9eb-dd5451379632)
