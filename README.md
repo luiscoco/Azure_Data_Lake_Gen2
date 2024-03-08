@@ -95,14 +95,15 @@ foreach (var path in paths)
 
 This C# sample provides a basic overview of interacting with Azure Data Lake Storage Gen2
 
-Depending on your specific requirements, you might need to explore more advanced features like setting permissions, using data lakes with data frames in analytics services, or managing file and directory properties.
+Depending on your specific requirements, you might need to explore more advanced features like setting permissions, using data lakes with data frames in analytics services, or managing file and directory properties
 
- Here's how you could structure an entire C# program that incorporates all the steps mentioned earlier, including setting up namespaces, authentication, creating a file system, uploading a file, and listing files in a directory. This example assumes you're using Azure Active Directory for authentication.
+Here's how you could structure an entire C# program that incorporates all the steps mentioned earlier, including setting up namespaces, authentication, creating a file system, uploading a file, and listing files in a directory
 
-Make sure to replace placeholders like <your-datalake-name> with your actual Data Lake Storage Gen2 account details and adjust the file paths according to your environment.
+This example assumes you're using Azure Active Directory for authentication
 
-csharp
-Copy code
+Make sure to replace placeholders like **<your-datalake-name>** with your actual Data Lake Storage Gen2 account details and adjust the file paths according to your environment.
+
+```csharp
 using Azure.Storage.Files.DataLake;
 using Azure.Identity;
 using System;
@@ -143,11 +144,17 @@ class Program
         }
     }
 }
+```
+
 Before running this code, ensure:
 
-You have installed the Azure.Storage.Files.DataLake package in your project.
-You replace <your-datalake-name> with your Data Lake Storage Gen2 account name.
-The file example.txt exists in your project's output directory, or adjust the filePath variable accordingly.
-Your Azure Active Directory setup for authentication is correctly configured, and the running account has the necessary permissions to perform these operations.
-This simple example is designed to get you started. Depending on your application's needs, you might want to handle exceptions, configure additional settings, or explore more functionalities provided by the Azure SDK for .NET.
+You have installed the **Azure.Storage.Files.DataLake** package in your project
+
+You replace **<your-datalake-name>** with your **Data Lake Storage Gen2** account name
+
+The file **example.txt** exists in your project's output directory, or adjust the filePath variable accordingly
+
+Your Azure Active Directory setup for authentication is correctly configured, and the running account has the necessary permissions to perform these operations
+
+This simple example is designed to get you started. Depending on your application's needs, you might want to handle exceptions, configure additional settings, or explore more functionalities provided by the Azure SDK for .NET
 
